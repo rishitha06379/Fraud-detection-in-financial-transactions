@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Fraud Detection</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Transaction Fraud Detection System</h1>
+            <p>Advanced AI-powered financial security solution</p>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="main-container">
+            <div class="info-section">
+                <div class="info-content">
+                    <!-- Project Introduction -->
+                    <div class="info-card intro-card">
+                        <div class="card-header">
+                            <i class="fas fa-project-diagram card-icon"></i>
+                            <h3>About Project</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Our fraud detection system is an platform designed to identify potentially fraudulent financial transactions through real-time prediction. It analyzes transaction data to detect suspicious patterns, helping ensure safer and more reliable digital payments.</p>
+                            <p>The model is trained on the Fraud Detection Transacation Dataset, ensuring robust and standardized performance.</p>
+                            <p>To enhance prediction accuracy, the system uses advanced Generative AI technologies. It addresses the challenge of imbalanced datasets—where fraudulent cases are rare—by generating synthetic fraud samples using Generative Adversarial Networks (GANs).</p>
+                            
+                            <p>For classification and anomaly detection, it leverages powerful machine learning models like Random Forest Classifier and Autoencoders. These models enable the system to recognize both well-known and emerging fraud behaviors.</p>
+                            
+                            <h4 class="analysis-title">Model Performance Analysis</h4>
+                            
+                            <div class="performance-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Split Ratio</th>
+                                            <th>Model</th>
+                                            <th>Accuracy</th>
+                                            <th>Precision</th>
+                                            <th>Recall</th>
+                                            <th>F1-Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>80-20</td>
+                                            <td><strong>Random Forest</strong></td>
+                                            <td>0.89</td>
+                                            <td>0.90</td>
+                                            <td>0.89</td>
+                                            <td>0.89</td>
+                                        </tr>
+                                        <tr>
+                                            <td>80-20</td>
+                                            <td><strong>Auto encoders</strong></td>
+                                            <td>0.50</td>
+                                            <td>0.49</td>
+                                            <td>0.50</td>
+                                            <td>0.38</td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td>70-30</td>
+                                            <td><strong>Random Forest</strong></td>
+                                            <td>0.84</td>
+                                            <td>0.85</td>
+                                            <td>0.85</td>
+                                            <td>0.85</td>
+                                        </tr>
+                                        <tr>
+                                            <td>70-30</td>
+                                            <td><strong>Auto encoders</strong></td>
+                                            <td>0.79</td>
+                                            <td>0.80</td>
+                                            <td>0.79</td>
+                                            <td>0.79</td>
+                                        </tr>
+                                        <tr>
+                                            <td>90-10</td>
+                                            <td><strong>Random Forest</strong></td>
+                                            <td>0.84</td>
+                                            <td>0.85</td>
+                                            <td>0.85</td>
+                                            <td>0.85</td>
+                                        </tr>
+                                        <tr>
+                                            <td>90-10</td>
+                                            <td><strong>Auto Encoders</strong></td>
+                                            <td>0.79</td>
+                                            <td>0.80</td>
+                                            <td>0.79</td>
+                                            <td>0.79</td> -->
+                                        <!-- </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Instructions -->
+                    <div class="info-card instructions-card">
+                        <div class="card-header">
+                            <i class="fas fa-clipboard-list card-icon"></i>
+                            <h3>How To Use</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>To test your own data, please fill in the following details:</p>
+                            <div class="field-explanation">
+                                <p><strong>Transaction Amount</strong>: Amount transferred by the user (float)</p>
+                                <p><strong>Transaction Type</strong>: Nature of the transaction (ATM, Bank Transfer, Online, POS)</p>
+                                <p><strong>Account Balance</strong>: Balance available after transaction (float)</p>
+                                <p><strong>Device Type</strong>: Device used (Laptop, Mobile, Tablet)</p>
+                                <p><strong>Suspicious Activity</strong>: Do you believe this transaction might be suspicious or potentially risky?(e.g., unfamiliar payment site, strange request, unknown person, unverified app, high amount)</p>
+                                <p><strong>Previous Fraudulent Activity</strong>: Number of previous fraudulent activities associated with the user (if any).</p>
+                                <p><strong>Daily Transaction Count</strong>: Number of transactions made by the user on a daily basis.</p>
+                                <p><strong>Avg Transaction Amount (7 days)</strong>: The average transaction amount over the past 7 days.</p>
+                                <p><strong>Failed Transaction Count (7 days)</strong>: Number of failed transactions in the last 7 days.</p>
+                                <p><strong>Card Type</strong>: Amex, Discover, Mastercard, Visa</p>
+                                <p><strong>Authentication Method</strong>: Method of authentication used (Biometric, OTP, PIN, Password).</p>
+                                <p><strong>Is Weekend</strong>: Indicates whether the transaction occurred on a weekend (Yes/No).</p>
+                                <p><strong>Timestamp</strong>: Date and time of transaction (converted to Year, Month, Day, Hour [AM/PM], Minute, Second)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Section Form -->
+            <div class="form-section">
+                <div class="form-header">
+                    <h2 class="form-title">Fraud Detection Form</h2>
+                    <div class="form-tech-image">
+                        <img src="https://mastechinfotrellis.com/hubfs/Knowledge-Graphs-for-Fraud-Detection---Use-Case.webp" alt="Fraud Detection Technology">
+                    </div>
+                </div>
+                
+                <!-- Form Container -->
+                <div class="form-container">
+                    <form id="fraudForm">
+                        <div class="form-group">
+                            <label>Transaction Amount (float)</label>
+                            <input type="number" id="transactionAmount" step="0.01" placeholder="0.00" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Transaction Type</label>
+                                <select id="transactionType" required>
+                                    <option value="" disabled selected>Select type</option>
+                                    <option value="0">ATM (0)</option>
+                                    <option value="1">Bank Transfer (1)</option>
+                                    <option value="2">Online (2)</option>
+                                    <option value="3">POS (3)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Balance (float)</label>
+                                <input type="number" id="accountBalance" step="0.01" placeholder="0.00" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Device Type</label>
+                                <select id="deviceType" required>
+                                    <option value="" disabled selected>Select device</option>
+                                    <option value="0">Laptop (0)</option>
+                                    <option value="1">Mobile (1)</option>
+                                    <option value="2">Tablet (2)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Suspicious Activity</label>
+                                <select id="ipAddressFlag" required>
+                                    <option value="" disabled selected>Select status</option>
+                                    <option value="0">No (0)</option>
+                                    <option value="1">Yes (1)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Previous Fraudulent Activity</label>
+                                <select id="previousFraud" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="0">No (0)</option>
+                                    <option value="1">Yes (1)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Daily Transaction Count</label>
+                                <input type="number" id="dailyCount" min="0" placeholder="0" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Avg Transaction Amount (7 days)</label>
+                                <input type="number" id="avg7d" step="0.01" placeholder="0.00" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Failed Transactions (7 days)</label>
+                                <input type="number" id="failed7d" min="0" placeholder="0" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Card Type</label>
+                                <select id="cardType" required>
+                                    <option value="" disabled selected>Select card type</option>
+                                    <option value="0">Amex (0)</option>
+                                    <option value="1">Discover (1)</option>
+                                    <option value="2">Mastercard (2)</option>
+                                    <option value="3">Visa (3)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Authentication Method</label>
+                                <select id="authMethod" required>
+                                    <option value="" disabled selected>Select method</option>
+                                    <option value="0">Biometric (0)</option>
+                                    <option value="1">OTP (1)</option>
+                                    <option value="2">PIN (2)</option>
+                                    <option value="3">Password (3)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Is Weekend</label>
+                                <select id="isWeekend" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="0">No (0)</option>
+                                    <option value="1">Yes (1)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Date/Time</label>
+                                <input type="datetime-local" id="datetime" required>
+                                <div id="dateError" class="error-message">Future dates cannot be accepted.</div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Analyze Transaction</span>
+                            <i class="fas fa-shield-alt btn-icon"></i>
+                        </button>
+                    </form>
+                    <!-- Results Container -->
+                     <br>
+                <div id="result" class="result-container"></div>
+                </div>
+                
+                <!-- Key Technologies Section
+                <div class="info-card technologies-card">
+                    <div class="card-header">
+                        <i class="fas fa-microchip card-icon"></i>
+                        <h3>Key Technologies</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h4>CTGAN</h4>
+                                <p>Conditional Tabular GAN to handle class imbalance through synthetic sample generation</p>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <h4>Random Forest</h4>
+                                <p>Classifier for robust transaction classification</p>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <h4>Autoencoders</h4>
+                                <p>For anomaly detection in transaction patterns</p>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4>WGAN & SDG-GAN</h4>
+                                <p>For advanced synthetic data generation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 -->
+                <!-- Understanding Results Section -->
+                <div class="info-card result-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie card-icon"></i>
+                        <h3>Understanding Results</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Once submitted, our model will analyze the transaction and provide:</p>
+                            <li><strong>Prediction</strong>: Fraudulent or Legitimate</li>
+                            <li><strong>Confidence Score</strong>: Probability percentage (0-100%)</li>
+                        
+                        <!-- <p class="note">Note: All timestamps are automatically converted to your local time zone for analysis.</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('fraudForm');
+            const datetimeInput = document.getElementById('datetime');
+            const dateError = document.getElementById('dateError');
+    
+            // Restrict future dates
+            const now = new Date();
+            const timezoneOffset = now.getTimezoneOffset() * 60000;
+            const localISOTime = (new Date(now - timezoneOffset)).toISOString().slice(0, 16);
+            datetimeInput.max = localISOTime;
+    
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+    
+                const selectedDate = new Date(datetimeInput.value);
+                const now = new Date();
+    
+                if (selectedDate > now) {
+                    dateError.style.display = 'block';
+                    datetimeInput.focus();
+                    return;
+                }
+    
+                dateError.style.display = 'none';
+    
+                const dt = new Date(datetimeInput.value);
+                const hours = dt.getHours();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                const displayHours = hours % 12 || 12;
+    
+                const data = {
+                    Transaction_Amount: parseFloat(document.getElementById('transactionAmount').value),
+                    Transaction_Type: document.getElementById('transactionType').value,
+                    Account_Balance: parseFloat(document.getElementById('accountBalance').value),
+                    Device_Type: document.getElementById('deviceType').value,
+                    IP_Address_Flag: document.getElementById('ipAddressFlag').value,
+                    Previous_Fraudulent_Activity: document.getElementById('previousFraud').value,
+                    Daily_Transaction_Count: parseInt(document.getElementById('dailyCount').value),
+                    Avg_Transaction_Amount_7d: parseFloat(document.getElementById('avg7d').value),
+                    Failed_Transaction_Count_7d: parseInt(document.getElementById('failed7d').value),
+                    Card_Type: document.getElementById('cardType').value,
+                    Authentication_Method: document.getElementById('authMethod').value,
+                    Is_Weekend: document.getElementById('isWeekend').value,
+                    Year: dt.getFullYear(),
+                    Month: dt.getMonth() + 1,
+                    Day: dt.getDate(),
+                    Hour: hours,
+                    Minute: dt.getMinutes(),
+                    Second: dt.getSeconds(),
+                    AMPM: ampm
+                };
+    
+                try {
+                    const response = await fetch('/predict', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+    
+                    const result = await response.json();
+                    const resultDiv = document.getElementById('result');
+                    
+                    if (result.error) {
+                        resultDiv.innerHTML = `
+                            <div class="error-result">
+                                <div class="result-header">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <h3>Error</h3>
+                                </div>
+                                <div class="result-details">
+                                    <p>${result.error}</p>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        if (result.prediction.toLowerCase().includes('fraud')) {
+                            resultDiv.innerHTML = `
+                                <div class="fraud-result">
+                                    <div class="result-header">
+                                        <i class="fas fa-radiation-alt"></i>
+                                        <h3>Fraud Detected!</h3>
+                                    </div>
+                                    <div class="result-details">
+                                        <p>Confidence: <strong>${result.confidence}%</strong></p>
+                                        <p class="recommendation">Recommendation: Freeze account and investigate immediately</p>
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            resultDiv.innerHTML = `
+                                <div class="safe-result">
+                                    <div class="result-header">
+                                        <i class="fas fa-check-circle"></i>
+                                        <h3>Transaction Safe</h3>
+                                    </div>
+                                    <div class="result-details">
+                                        <p>Confidence: <strong>${result.confidence}%</strong></p>
+                                        <p class="recommendation">No suspicious activity detected</p>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerHTML = `
+                        <div class="error-result">
+                            <div class="result-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <h3>Error</h3>
+                            </div>
+                            <div class="result-details">
+                                <p>Failed to process request. Please try again.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+    
+            datetimeInput.addEventListener('input', function () {
+                dateError.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
